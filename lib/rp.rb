@@ -1,5 +1,2 @@
-require "rp/version"
-
-module Rp
-  # Your code goes here...
-end
+require 'rp/project'
+require 'rp/version'
