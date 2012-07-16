@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'rp'
+
+  options = Rp::Options.parse(ARGV)
+
+  projector = Rp::Projector.new(options.directory_name, { :ruby_version => options.ruby_version })
+  projector.build(STDOUT)
+
+rescue LoadError => e
+  puts "ERROR"
+  $stderr.puts <<-EOS
+  EOS
+  exit(1)
+end
