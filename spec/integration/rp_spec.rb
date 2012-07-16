@@ -6,12 +6,12 @@ describe 'Ruby-Project Directory Generator' do
 
   it 'Creates a new directory with a specified rvmrc file in it' do
     output = StringIO.new
-    rp = Rp::Project.new(directory_name)
-    rp.create(output)
+    rp = Rp::Projector.new(directory_name)
+    rp.build(output)
 
     output.rewind
-    output.readlines.should == ["      create  example_dir/ruby.rb\n",
-                                "      create  example_dir/.rvmrc\n",
+    output.readlines.should == ["      create  example_dir/.rvmrc\n",
+                                "      create  example_dir/ruby.rb\n",
                                 "Built empty ruby enviroment in #{directory_name}\n"]
   end
 
