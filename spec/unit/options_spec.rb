@@ -1,4 +1,3 @@
-require 'unit/spec_helper'
 require 'rp/options'
 
 describe Rp::Options do
