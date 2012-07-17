@@ -10,7 +10,7 @@ module Rp
       ::File.open(@name, 'w+') do |f|
         f << @content
       end
-      output << "      create  %s\n" % [@name]
+      output << "      create  #{@name}\n"
     end
 
   end

@@ -10,11 +10,11 @@ module Rp
       directory = Rp::Directory.new(@name)
       directory.create
 
-      files_templates.each do |file_tmp|
-        Rp::File.new(::File.join(@name, file_tmp[:name]), file_tmp[:content]).create(output)
+      files_templates.each do |file|
+        Rp::File.new(::File.join(@name, file[:name]), file[:content]).create(output)
       end
 
-      output << "Built empty ruby enviroment in %s\n" % [@name]
+      output << "Built empty ruby enviroment in #{@name}\n"
     end
 
     def files_templates
@@ -23,14 +23,7 @@ module Rp
        { :name => '.rvmrc',
          :content => "rvm --create #{@ruby_version}@#{@name}\n" }]
     end
-
-    def file_content
-      {
-        :rvmrc => "rvm --create %s@%s\n" % [@ruby_version, @name],
-        :template => "# your ruby code ..."
-      }
-    end
-    private :file_content
+    private :files_templates
 
     def default_ruby_version
       'ruby-1.9.3'
