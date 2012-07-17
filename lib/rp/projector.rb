@@ -1,24 +1,27 @@
 module Rp
   class Projector
 
-    DEFAULT_RUBY_VERSION = 'ruby-1.9.3'
-
     def initialize(name, options={})
       @name = name
-      @ruby_version = options[:ruby_version] || DEFAULT_RUBY_VERSION
+      @ruby_version = options[:ruby_version] || default_ruby_version
     end
 
     def build(output=STDOUT)
       directory = Rp::Directory.new(@name)
-
-      ruby = Rp::File.new(::File.join(@name, 'ruby.rb'), file_content[:template])
-      rvmrc = Rp::File.new(::File.join(@name, '.rvmrc'), file_content[:rvmrc])
-
       directory.create
-      rvmrc.create(output)
-      ruby.create(output)
+
+      files_templates.each do |file_tmp|
+        Rp::File.new(::File.join(@name, file_tmp[:name]), file_tmp[:content]).create(output)
+      end
 
       output << "Built empty ruby enviroment in %s\n" % [@name]
+    end
+
+    def files_templates
+      [{ :name => 'ruby.rb',
+         :content => '# your ruby code ...' },
+       { :name => '.rvmrc',
+         :content => "rvm --create #{@ruby_version}@#{@name}\n" }]
     end
 
     def file_content
@@ -28,6 +31,11 @@ module Rp
       }
     end
     private :file_content
+
+    def default_ruby_version
+      'ruby-1.9.3'
+    end
+    private :default_ruby_version
 
   end
 end
