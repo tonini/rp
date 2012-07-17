@@ -8,7 +8,7 @@ begin
   projector = Rp::Projector.new(options.directory_name, { :ruby_version => options.ruby_version })
   projector.build(STDOUT)
 
-rescue LoadError => e
+rescue LoadError
   puts "ERROR"
   $stderr.puts <<-EOS
   EOS

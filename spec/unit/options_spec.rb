@@ -18,4 +18,20 @@ describe Rp::Options do
     options.ruby_version.should == "ruby-1.9.2"
   end
 
+  it 'put help message to output if no argumens given' do
+    arguments = []
+    output = StringIO.new
+
+    Rp::Options.should_receive(:exit)
+
+    options = Rp::Options.parse(arguments, output)
+
+    output.rewind
+    output.readlines.should == ["Usage: rp [NAME] ... [OPTION] ...\n",
+                                "\n",
+                                "Specific options:\n",
+                                "    -r, --ruby-version [VERSION]     ruby version used in .rvmrc file\n",
+                                "    -h, --help                       display this help and exit\n"]
+  end
+
 end

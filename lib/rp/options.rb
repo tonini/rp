@@ -24,7 +24,14 @@ module Rp
       end
 
       opts.order(arguments) {|argument| options.directory_name = argument; break}
-      opts.parse!(arguments)
+
+      begin
+        arguments << "-h" if arguments.empty?
+        opts.parse!(arguments)
+      rescue OptionParser::ParseError => e
+        STDERR.puts e.message, "\n", opts
+        exit(-1)
+      end
 
       options
     end
