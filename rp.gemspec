@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Samuel Tonini"]
   s.email       = ["tonini.samuel@gmail.com"]
   s.homepage    = "http://www.github.com/tonini"
-  s.summary     = %q{}
-  s.description = %q{}
+  s.summary     = %q{rp (Ruby Projector) is a tiny command line app to help creating new ruby development enviroments, isolated with rvm}
+  s.description = s.summary
 
   s.rubyforge_project = "rp"
 
