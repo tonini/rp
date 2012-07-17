@@ -6,7 +6,7 @@ module Rp
     end
 
     def create
-      Dir.mkdir(@dir_name)
+      FileUtils.mkdir_p(@dir_name)
     end
 
   end
