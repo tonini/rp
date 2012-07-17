@@ -3,12 +3,8 @@ require 'fileutils'
 module Rp
   class Directory
 
-    def initialize(name)
-      @dir_name = name
-    end
-
-    def create
-      FileUtils.mkdir_p(@dir_name)
+    def self.create(name)
+      FileUtils.mkdir_p(name)
     end
 
   end
