@@ -10,7 +10,7 @@ module Rp
       Rp::Directory.create(@dir_name)
 
       files_templates.each do |file|
-        Rp::File.create(::File.join(@dir_name, file[:name]), file[:content], output)
+        Rp::File.create(file[:name], file[:content], @dir_name, output)
       end
 
       output << "Built new ruby enviroment in #{@dir_name}\n"

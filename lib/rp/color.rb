@@ -7,7 +7,8 @@ module Rp
 
     def self.colors
       {
-        :green => "\e[32m"
+        :green => "\e[32m",
+        :blue  =>   "\e[34m"
       }
     end
 
