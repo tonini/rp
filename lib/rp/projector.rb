@@ -22,12 +22,10 @@ module Rp
        { :name => '.rvmrc',
          :content => "rvm --create #{@ruby_version}@#{@dir_name}\n" }]
     end
-    private :files_templates
 
     def default_ruby_version
       'ruby-1.9.3'
     end
-    private :default_ruby_version
 
   end
 end
