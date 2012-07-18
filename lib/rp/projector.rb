@@ -13,7 +13,7 @@ module Rp
         Rp::File.create(::File.join(@dir_name, file[:name]), file[:content], output)
       end
 
-      output << "Built empty ruby enviroment in #{@dir_name}\n"
+      output << "Built new ruby enviroment in #{@dir_name}\n"
     end
 
     def files_templates

@@ -1,4 +1,5 @@
 require 'rp/version'
+require 'rp/color'
 require 'rp/options'
 require 'rp/file'
 require 'rp/directory'

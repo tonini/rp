@@ -5,7 +5,7 @@ module Rp
       ::File.open(name, 'w+') do |f|
         f << content
       end
-      output << "      create  #{name}\n"
+      output << "      #{Color.colorize("create", :green)}  #{name}\n"
     end
 
   end

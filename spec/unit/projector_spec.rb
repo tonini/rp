@@ -1,3 +1,4 @@
+require 'rp/color'
 require 'rp/file'
 require 'rp/directory'
 require 'rp/projector'

@@ -10,9 +10,9 @@ describe 'Ruby-Project Directory Generator' do
     rp.build(output)
 
     output.rewind
-    output.readlines.should == ["      create  example_dir/ruby.rb\n",
-                                "      create  example_dir/.rvmrc\n",
-                                "Built empty ruby enviroment in #{directory_name}\n"]
+    output.readlines.should == ["      \e[32mcreate\e[0m  example_dir/ruby.rb\n",
+                                "      \e[32mcreate\e[0m  example_dir/.rvmrc\n",
+                                "Built new ruby enviroment in #{directory_name}\n"]
   end
 
   after { FileUtils.rm_r(directory_name) }
