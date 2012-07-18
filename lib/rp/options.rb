@@ -21,13 +21,17 @@ module Rp
           output << opts
           exit
         end
-      end
 
-      opts.order(arguments) {|argument| options.directory_name = argument; break}
+        opts.on_tail("-v", "--version", "show version") do
+          output << "rp, version #{Rp::VERSION}\n"
+          exit
+        end
+      end
 
       begin
         arguments << "-h" if arguments.empty?
         opts.parse!(arguments)
+        options.directory_name = arguments.first
       rescue OptionParser::ParseError => e
         STDERR.puts e.message, "\n", opts
         exit(-1)

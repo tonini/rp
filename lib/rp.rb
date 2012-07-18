@@ -1,3 +1,4 @@
+require 'rp/version'
 require 'rp/options'
 require 'rp/file'
 require 'rp/directory'
