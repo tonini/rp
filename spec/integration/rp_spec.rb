@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'integration/spec_helper'
 
 describe 'Ruby-Project Directory Generator' do
@@ -5,14 +6,13 @@ describe 'Ruby-Project Directory Generator' do
   let(:directory_name) { 'example_dir' }
 
   it 'Creates a new directory with a specified rvmrc file in it' do
-    output = StringIO.new
     rp = Rp::Projector.new(directory_name)
-    rp.build(output)
 
-    output.rewind
-    output.readlines.should == ["      \e[32mcreate\e[0m  example_dir/ruby.rb\n",
-                                "      \e[32mcreate\e[0m  example_dir/.rvmrc\n",
-                                "Built new ruby enviroment in #{directory_name}\n"]
+    rp.stub(:destination_full_path => directory_name)
+
+    capture(:stdout) { rp.build }.split("\n").should == ["\e[32m      create\e[0m  example_dir/ruby.rb",
+                                                         "\e[32m      create\e[0m  example_dir/.rvmrc",
+                                                         "Built new ruby enviroment in #{directory_name}"]
   end
 
   after { FileUtils.rm_r(directory_name) }

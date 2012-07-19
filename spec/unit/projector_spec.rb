@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 require 'rp/color'
 require 'rp/file'
 require 'rp/directory'
@@ -6,11 +8,10 @@ require 'rp/projector'
 describe Rp::Projector do
 
   let(:directory_name) { 'prototype' }
-  let(:output) { StringIO.new }
 
   before do
     projector = Rp::Projector.new(directory_name)
-    projector.build(output)
+    silence(:stdout) { projector.build }
   end
 
   it 'creates a directory with the give name' do
@@ -33,10 +34,9 @@ describe Rp::Projector do
       before do
         FileUtils.rm_r(directory_name)
 
-        output = StringIO.new
         project = Rp::Projector.new(directory_name, {:ruby_version => 'ruby-1.9.3-p125'})
 
-        project.build(output)
+        silence(:stdout) { project.build }
       end
 
       it 'writes a rvm command in the .rvmrc file to use or build a gemset' do

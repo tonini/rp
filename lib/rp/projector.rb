@@ -6,14 +6,14 @@ module Rp
       @ruby_version = options[:ruby_version] || default_ruby_version
     end
 
-    def build(output=STDOUT)
+    def build
       Rp::Directory.create(@dir_name)
 
       files_templates.each do |file|
-        Rp::File.create(::File.join(@dir_name, file[:name]), file[:content], output)
+        Rp::File.create(::File.join(@dir_name, file[:name]), file[:content])
       end
 
-      output << "Built new ruby enviroment in #{@dir_name}\n"
+      $stdout.puts "Built new ruby enviroment in #{destination_full_path}\n"
     end
 
     def files_templates
@@ -25,6 +25,10 @@ module Rp
 
     def default_ruby_version
       'ruby-1.9.3'
+    end
+
+    def destination_full_path
+      ::File.join(Dir.pwd, @dir_name)
     end
 
   end

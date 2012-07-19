@@ -4,7 +4,7 @@ require 'ostruct'
 module Rp
   class Options
 
-    def self.parse(arguments, output=STDOUT)
+    def self.parse(arguments)
       options = OpenStruct.new
 
       opts = OptionParser.new do |opts|
@@ -18,12 +18,12 @@ module Rp
         end
 
         opts.on_tail("-h", "--help", "display this help and exit") do
-          output << opts
+          $stdout.puts opts
           exit
         end
 
         opts.on_tail("-v", "--version", "show version") do
-          output << "rp, version #{Rp::VERSION}\n"
+          $stdout.puts "rp, version #{Rp::VERSION}\n"
           exit
         end
       end

@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'rp/options'
 require 'rp/version'
 
@@ -25,15 +26,15 @@ describe Rp::Options do
     arguments = []
 
     Rp::Options.should_receive(:exit)
-    Rp::Options.parse(arguments, output)
 
-    output.rewind
-    output.readlines.should == ["Usage: rp [NAME] ... [OPTION] ...\n",
-                                "\n",
-                                "Specific options:\n",
-                                "    -r, --ruby-version [VERSION]     ruby version used in .rvmrc file\n",
-                                "    -h, --help                       display this help and exit\n",
-                                "    -v, --version                    show version\n"]
+    capture(:stdout) {
+      Rp::Options.parse(arguments)
+    }.split("\n").should == ["Usage: rp [NAME] ... [OPTION] ...",
+                             "",
+                             "Specific options:",
+                             "    -r, --ruby-version [VERSION]     ruby version used in .rvmrc file",
+                             "    -h, --help                       display this help and exit",
+                             "    -v, --version                    show version"]
   end
 
   it 'put version information to the outout' do
@@ -42,10 +43,8 @@ describe Rp::Options do
     arguments = ["-v"]
 
     Rp::Options.should_receive(:exit)
-    Rp::Options.parse(arguments, output)
 
-    output.rewind
-    output.readlines.should == ["rp, version 0.0.1\n"]
+    capture(:stdout) { Rp::Options.parse(arguments) }.should == "rp, version 0.0.1\n"
   end
 
 end

@@ -6,7 +6,7 @@ begin
   options = Rp::Options.parse(ARGV)
 
   projector = Rp::Projector.new(options.directory_name, { :ruby_version => options.ruby_version })
-  projector.build(STDOUT)
+  projector.build
 
 rescue LoadError
   puts "ERROR"
