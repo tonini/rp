@@ -1,12 +1,6 @@
 module Rp
   class File < Resource
 
-    def initialize(destination, content=nil)
-      @destination = destination
-      @content = content
-      create
-    end
-
     def create
       ::File.open(@destination, 'w+') do |f|
         f << @content
