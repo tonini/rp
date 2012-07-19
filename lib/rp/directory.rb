@@ -1,10 +1,15 @@
 require 'fileutils'
 
 module Rp
-  class Directory
+  class Directory < Resource
 
-    def self.create(name)
-      FileUtils.mkdir_p(name)
+    def initialize(destination)
+      @destination = destination
+      create
+    end
+
+    def create
+      FileUtils.mkdir_p(@destination)
     end
 
   end

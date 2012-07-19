@@ -1,8 +1,17 @@
 require 'spec_helper'
+require 'rp/shell_helper'
+require 'rp/resource'
 require 'rp/color'
 require 'rp/file'
 
-describe Rp::File do
+describe Rp::ShellHelper do
+
+  let(:shell_example_class) do
+    class ShellExampleClass
+      include Rp::ShellHelper
+    end.new
+  end
+
 
   describe ".say_status" do
 
@@ -10,7 +19,7 @@ describe Rp::File do
       destination = 'prototype/.rvmrc'
 
       capture(:stdout) {
-        Rp::File.say_status(:created, destination)
+        shell_example_class.say_status(:created, destination)
       }.should == "     created  prototype/.rvmrc\n"
     end
 

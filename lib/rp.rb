@@ -1,3 +1,5 @@
+require 'rp/shell_helper'
+require 'rp/resource'
 require 'rp/version'
 require 'rp/color'
 require 'rp/options'

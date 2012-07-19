@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 require 'rp/color'
+require 'rp/shell_helper'
+require 'rp/resource'
 require 'rp/file'
 require 'rp/directory'
 require 'rp/projector'
