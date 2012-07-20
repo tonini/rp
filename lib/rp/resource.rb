@@ -3,7 +3,7 @@ module Rp
 
     include Rp::ShellHelper
 
-    def initialize(destination, content=nil)
+    def initialize(destination, content='')
       @destination = destination
       @content = content
 
@@ -11,7 +11,7 @@ module Rp
     end
 
     def create
-      raise 'Have to implemented.'
+      raise 'Not implemented abstract method.'
     end
 
   end
